@@ -8,6 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(fontFamily: 'SFPro'),
       home: MyHomePage(),
     );
   }
@@ -67,6 +68,7 @@ class MyHomePage extends StatelessWidget {
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 10,
+                            fontFamily: 'SFPro',
                             fontWeight: FontWeight.bold,
                           ),
                         )),
@@ -84,7 +86,10 @@ class MyHomePage extends StatelessWidget {
                         children: <Widget>[
                           Text(
                             '${transaction.title}',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'SFPro'
+                            ),
                           ),
                           Text('${transaction.dateTransaction}'),
                         ],
