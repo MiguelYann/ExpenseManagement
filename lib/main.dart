@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import 'models/transaction.dart';
 
@@ -38,6 +39,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var formatter = DateFormat.yMMMMEEEEd();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -64,14 +66,14 @@ class MyHomePage extends StatelessWidget {
                       Container(
                         child: Center(
                             child: Text(
-                          '${transaction.amount}€',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 10,
-                            fontFamily: 'SFPro',
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )),
+                              '${transaction.amount}€',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 10,
+                                fontFamily: 'SFPro',
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )),
                         height: 40,
                         width: 40,
                         margin: EdgeInsets.all(10),
@@ -91,7 +93,8 @@ class MyHomePage extends StatelessWidget {
                                 fontFamily: 'SFPro'
                             ),
                           ),
-                          Text('${transaction.dateTransaction}'),
+                          Text('${formatter.format(
+                              transaction.dateTransaction)}'),
                         ],
                       ),
                     ],
