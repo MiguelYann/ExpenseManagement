@@ -11,49 +11,54 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     final formatterDate = DateFormat.yMMMMEEEEd();
 
-    return Column(
-      children: <Widget>[
-        ...transactions.map((transaction) {
-          return Card(
-            child: Row(
-              children: <Widget>[
-                Container(
-                  child: Center(
+    return Container(
+      height: 300,
+      child: ListView.builder(
+          itemCount: transactions.length,
+          itemBuilder: (context, index) {
+            return Card(
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    child: Center(
                       child: Text(
-                    '${transaction.amount}€',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 10,
-                      fontFamily: 'SFPro',
-                      fontWeight: FontWeight.bold,
+                        '${transactions[index].amount.toStringAsFixed(2)}€',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 10,
+                          fontFamily: 'SFPro',
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
-                  )),
-                  height: 40,
-                  width: 40,
-                  margin: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
+                    height: 40,
+                    width: 40,
+                    margin: EdgeInsets.all(15),
+                    decoration: BoxDecoration(
                       border: Border.all(color: Colors.transparent),
-                      borderRadius: BorderRadius.all(Radius.circular(80)),
-                      color: Colors.red),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      '${transaction.title}',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, fontFamily: 'SFPro'),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(80),
+                      ),
+                      color: Colors.red,
                     ),
-                    Text(
-                        '${formatterDate.format(transaction.dateTransaction)}'),
-                  ],
-                ),
-              ],
-            ),
-          );
-        }).toList()
-      ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        '${transactions[index].title}',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontFamily: 'SFPro'),
+                      ),
+                      Text(
+                          '${formatterDate.format(transactions[index].dateTransaction)}'),
+                    ],
+                  ),
+                ],
+              ),
+            );
+          }),
     );
   }
 }
