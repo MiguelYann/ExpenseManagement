@@ -2,11 +2,16 @@ import 'package:expensemanagement/models/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class TransactionList extends StatelessWidget {
+class TransactionList extends StatefulWidget {
   final List<Transaction> transactions;
 
   TransactionList({this.transactions});
 
+  @override
+  _TransactionListState createState() => _TransactionListState();
+}
+
+class _TransactionListState extends State<TransactionList> {
   @override
   Widget build(BuildContext context) {
     final formatterDate = DateFormat.yMMMMEEEEd();
@@ -14,7 +19,7 @@ class TransactionList extends StatelessWidget {
     return Container(
       height: 300,
       child: ListView.builder(
-          itemCount: transactions.length,
+          itemCount: widget.transactions.length,
           itemBuilder: (context, index) {
             return Card(
               child: Row(
@@ -22,7 +27,7 @@ class TransactionList extends StatelessWidget {
                   Container(
                     child: Center(
                       child: Text(
-                        '${transactions[index].amount.toStringAsFixed(2)}€',
+                        '${widget.transactions[index].amount.toStringAsFixed(2)}€',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 10,
@@ -47,12 +52,12 @@ class TransactionList extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        '${transactions[index].title}',
+                        '${widget.transactions[index].title}',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontFamily: 'SFPro'),
                       ),
                       Text(
-                          '${formatterDate.format(transactions[index].dateTransaction)}'),
+                          '${formatterDate.format(widget.transactions[index].dateTransaction)}'),
                     ],
                   ),
                 ],
