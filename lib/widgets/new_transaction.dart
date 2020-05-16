@@ -8,9 +8,17 @@ class NewTransaction extends StatelessWidget {
   final TextEditingController _transactionController = TextEditingController();
   final TextEditingController _amountController = TextEditingController();
 
+  void submitTransaction() {
+    if (_transactionController.text.isEmpty || _amountController.text.isEmpty) {
+      return;
+    }
+    handlerAddTransaction(
+        _transactionController.text, double.parse(_amountController.text));
+  }
+
   @override
   Widget build(BuildContext context) {
-    const Color _BUTTON_COLOR = Colors.indigoAccent;
+    const Color buttonCustomColor = Colors.indigoAccent;
 
     return Column(
       children: <Widget>[
@@ -22,12 +30,15 @@ class NewTransaction extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 TextField(
+                  onSubmitted: (_) => submitTransaction(),
                   controller: _transactionController,
                   decoration: InputDecoration(
                     labelText: 'Name transaction',
                   ),
                 ),
                 TextField(
+                  onSubmitted: (_) => submitTransaction(),
+                  keyboardType: TextInputType.numberWithOptions(decimal: true),
                   controller: _amountController,
                   decoration: InputDecoration(
                     labelText: 'Amount',
@@ -38,12 +49,9 @@ class NewTransaction extends StatelessWidget {
           ),
         ),
         RaisedButton(
-          onPressed: () {
-            handlerAddTransaction(_transactionController.text,
-                double.parse(_amountController.text));
-          },
+          onPressed: submitTransaction,
           textColor: Colors.white,
-          color: _BUTTON_COLOR,
+          color: buttonCustomColor,
           child: Text('Add'),
         ),
       ],
