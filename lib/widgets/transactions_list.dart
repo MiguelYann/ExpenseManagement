@@ -36,15 +36,15 @@ class _TransactionListState extends State<TransactionList> {
                         ),
                       ),
                     ),
-                    height: 40,
-                    width: 40,
+                    height: 60,
+                    width: 60,
                     margin: EdgeInsets.all(15),
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.transparent),
                       borderRadius: BorderRadius.all(
                         Radius.circular(80),
                       ),
-                      color: Colors.red,
+                      color: Theme.of(context).primaryColor,
                     ),
                   ),
                   Column(

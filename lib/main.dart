@@ -10,7 +10,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(fontFamily: 'SFPro'),
+      theme: ThemeData(
+        fontFamily: 'SFPro',
+        primarySwatch: Colors.deepPurple,
+        accentColor: Colors.deepPurple,
+        buttonColor: Colors.deepPurple,
+        appBarTheme:AppBarTheme(
+          color: Colors.deepPurple
+        )
+      ),
       home: MyHomePage(),
     );
   }
@@ -78,7 +86,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
         centerTitle: true,
         title: Text('Expense Management'),
-        backgroundColor: Colors.indigoAccent,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -87,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Card(
               elevation: 150.0,
               child: Container(
-                color: Colors.indigoAccent,
+                color: Theme.of(context).primaryColor,
                 width: double.infinity,
                 child: Text('First carsd'),
               ),
